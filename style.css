@@ -1,0 +1,29 @@
+body {
+  background-color: #bdc3c7;
+}
+
+.app {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.toolbox-row {
+  margin: 10px 0 0 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.toolbox {
+  outline: black solid 1px;
+  width: 150px;
+  height: 200px;
+}
+
+canvas {
+  outline: black solid 1px;
+}
