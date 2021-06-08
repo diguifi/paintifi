@@ -1,9 +1,11 @@
 <head>
+  <title>Paintifi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 </head>
-<div class="app">
-  <div class="container">
-    <div class="toolbox">
+
+  <div class="row">
+    <div class="column side">
       <div class="toolbox-row">
         <input type="color" id="color-picker">
       </div>
@@ -19,11 +21,21 @@
         <input type="button" value="📥" id="download-btn">
       </div>
     </div>
-    <div id="canvas-undoredo">
-      <div id="canvas-linetool">
-        <canvas id="canvas" width="300" height="300"></canvas>
+
+    <div class="column middle">
+      <div id="canvas-undoredo">
+        <div id="canvas-linetool">
+          <canvas id="canvas" width="300" height="300"></canvas>
+        </div>
       </div>
     </div>
+
+    <div class="column side">
+      <p><small><i>(comming soon)</i></small></p>
+      <input type="number" style="width: 55px;" value="300" id="width-input" disabled>x
+      <input type="number" style="width: 55px;" value="300" id="height-input" disabled>
+      <input type="button" value="📏" id="resize-btn" disabled>
+    </div>
   </div>
-</div>
+
 <script type="module" src="src/main.js"></script>

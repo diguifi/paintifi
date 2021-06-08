@@ -1,4 +1,5 @@
 import ToolBox from '../tools/toolBox.js'
+import SizeManager from './sizeManager.js'
 
 export default class DrawingBoard {
   constructor(configs) {
@@ -30,6 +31,7 @@ export default class DrawingBoard {
     this.drawingMatrix = [];
     this.initDrawingMatrix();
     this.toolBox = new ToolBox(this);
+    this.sizeManager = new SizeManager(this);
   }
   
   initDrawingMatrix() {

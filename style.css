@@ -1,15 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #bdc3c7;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.app {
-  width: 600px;
-  margin: 0 auto;
+.header {
+  background-color: #c6ccd1;
+  padding: 5px;
+  text-align: center;
+  font-size: 10px;
 }
 
-.container {
+.row {
+  display: -webkit-flex;
   display: flex;
-  justify-content: center;
+  height: 95vh;
+}
+
+.column {
+  outline: black solid 1px;
+  padding: 10px;
+}
+
+.column.side {
+  max-width: 200px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.column.middle {
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  text-align: center;
 }
 
 .toolbox-row {
@@ -18,12 +45,17 @@ body {
   justify-content: space-evenly;
 }
 
-.toolbox {
-  outline: black solid 1px;
-  width: 150px;
-  height: 200px;
-}
-
 canvas {
   outline: black solid 1px;
+}
+
+@media (max-width: 600px) {
+  .row {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .column.side {
+    max-width: 100%;
+  }
 }
