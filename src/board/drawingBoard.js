@@ -118,7 +118,6 @@ export default class DrawingBoard {
   paintPixel(x,y,color,preview=false) {
     if (color === 0) {
       this.ctx.globalCompositeOperation = 'destination-out';
-      color = 0;
     } else {
       this.ctx.globalCompositeOperation = 'source-over';
     }
@@ -131,5 +130,32 @@ export default class DrawingBoard {
     if (!preview) {
       this.drawingMatrix[y][x] = color;
     }
+  }
+
+  getRealSizeCanvas() {
+    const realCanvas = document.createElement('canvas');
+    realCanvas.id = 'canvas-real';
+    realCanvas.width = this.boardColumns;
+    realCanvas.height = this.boardRows;
+    const realCtx = realCanvas.getContext('2d');
+    realCtx.canvas.width  = this.boardColumns;
+    realCtx.canvas.height = this.boardRows;
+
+    for(let i=0; i < this.boardRows; i++) {
+      for(let j=0; j < this.boardColumns; j++) {
+        if (this.drawingMatrix[i][j] === 0) {
+          realCtx.globalCompositeOperation = 'destination-out';
+        } else {
+          realCtx.globalCompositeOperation = 'source-over';
+        }
+
+        realCtx.beginPath();
+        realCtx.rect(j,i,1,1);
+        realCtx.fillStyle = this.drawingMatrix[i][j];
+        realCtx.fill();
+      }
+    }
+
+    return realCanvas;
   }
 }

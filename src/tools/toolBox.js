@@ -23,6 +23,7 @@ export default class ToolBox {
     this.pencil = new Pencil(drawingBoard);
     this.line = new LinePencil(drawingBoard);
     this.eraser = new Eraser(drawingBoard);
+    this.drawingBoard = drawingBoard;
     this.pencilClick();
   }
   
@@ -60,7 +61,7 @@ export default class ToolBox {
   downloadClick() {
     const link = document.createElement('a');
     link.download = 'pixel_art.png';
-    link.href = document.getElementById('canvas').toDataURL();
+    link.href = this.drawingBoard.getRealSizeCanvas().toDataURL();
     link.click();
   }
 }
