@@ -35,10 +35,19 @@ export default class DrawingBoard {
   }
   
   initDrawingMatrix() {
+    this.drawingMatrix.splice(0, this.drawingMatrix.length);
     for(let i=0; i < this.boardRows; i++) {
       this.drawingMatrix.push([]);
       for(let j=0; j < this.boardColumns; j++) {
         this.drawingMatrix[i][j] = 0;
+      }
+    }
+  }
+
+  redrawDrawingMatrix() {
+    for (let i=0; i < this.boardRows; i++) {
+      for (let j=0; j < this.boardColumns; j++) {
+        this.paintPixel(j,i,this.drawingMatrix[i][j]);
       }
     }
   }
@@ -157,5 +166,29 @@ export default class DrawingBoard {
     }
 
     return realCanvas;
+  }
+
+  resizeArt(width, height) {
+    this.boardColumns = height;
+    this.boardRows = width;
+    this.resizeCanvas(this.width, this.height);
+    this.initDrawingMatrix();
+  }
+
+  resizeEditor(maxWidth) {
+    const newWidth = maxWidth - (maxWidth % this.boardColumns);
+    const multiplier = newWidth/this.boardColumns;
+    const newHeight = this.boardRows * multiplier;
+    this.resizeCanvas(newWidth, newHeight);
+    this.redrawDrawingMatrix();
+  }
+
+  resizeCanvas(w, h) {
+    this.width = w;
+    this.height = h;
+    this.ctx.canvas.width  = this.width;
+    this.ctx.canvas.height = this.height;
+    this.cellWidth = this.width/this.boardColumns;
+    this.cellHeight = this.height/this.boardRows;
   }
 }
