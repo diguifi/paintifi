@@ -179,8 +179,14 @@ export default class DrawingBoard {
     const newWidth = maxWidth - (maxWidth % this.boardColumns);
     const multiplier = newWidth/this.boardColumns;
     const newHeight = this.boardRows * multiplier;
-    this.resizeCanvas(newWidth, newHeight);
-    this.redrawDrawingMatrix();
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+    const maxVh = Math.floor(vh - (vh * 0.1))
+    if (newHeight > maxVh && maxWidth != this.sizeManager.minEditorWidth) {
+      this.resizeEditor(this.sizeManager.minEditorWidth)
+    } else {
+      this.resizeCanvas(newWidth, newHeight);
+      this.redrawDrawingMatrix();
+    }
   }
 
   resizeCanvas(w, h) {

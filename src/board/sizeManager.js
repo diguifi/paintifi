@@ -7,6 +7,8 @@ export default class SizeManager {
     this.middleColEl = document.getElementById('middle');
     this.bodyEl = document.getElementById('body');
     this.bodyEl.onresize = () => this.resizedScreen();
+    this.maxEditorWidth = 500;
+    this.minEditorWidth = 250;
     
     this.drawingBoard = drawingBoard;
     this.widthInput.value = this.drawingBoard.boardColumns;
@@ -16,10 +18,10 @@ export default class SizeManager {
 
   resizedScreen(force = false) {
     if (this.middleColEl.offsetWidth <= 550 && (this.drawingBoard.width > 250 || force)) {
-      this.drawingBoard.resizeEditor(250);
+      this.drawingBoard.resizeEditor(this.minEditorWidth);
     }
     if (this.middleColEl.offsetWidth > 550 && (this.drawingBoard.width <= 250 || force)){
-      this.drawingBoard.resizeEditor(500);
+      this.drawingBoard.resizeEditor(this.maxEditorWidth);
     }
   }
 
