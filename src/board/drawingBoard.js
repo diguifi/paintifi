@@ -171,6 +171,7 @@ export default class DrawingBoard {
   resizeArt(width, height) {
     this.boardColumns = height;
     this.boardRows = width;
+    this.toolBox.undoredo.resetActions();
     this.resizeCanvas(this.width, this.height);
     this.initDrawingMatrix();
   }

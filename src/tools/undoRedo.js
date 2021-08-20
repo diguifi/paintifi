@@ -3,6 +3,8 @@ export default class UndoRedo {
     document.onkeydown = (e) => this.checkAction(e);
     document.getElementById('canvas-undoredo').onmouseup = () => this.saveState();
     document.getElementById('canvas-undoredo').ontouchend = () => this.saveState();
+    document.getElementById('undo-btn').onclick = () => this.undo();
+    document.getElementById('redo-btn').onclick = () => this.redo();
     this.drawingBoard = drawingBoard;
     this.actions = [];
     this.index = 0;
@@ -53,5 +55,10 @@ export default class UndoRedo {
         this.drawingBoard.paintPixel(i,j,drawingMatrixState[j][i]);
       }
     }
+  }
+
+  resetActions() {
+    this.actions.splice(0, this.actions.length);
+    this.index = 0;
   }
 }
