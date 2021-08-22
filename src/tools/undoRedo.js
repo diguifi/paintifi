@@ -13,10 +13,12 @@ export default class UndoRedo {
   
   checkAction(e) {
     if ((e.ctrlKey && e.keyCode == 89) || (e.ctrlKey && e.shiftKey && e.keyCode == 90)) {
+      e.preventDefault();
       this.redo();
       return;
     }
     if (e.ctrlKey && e.keyCode == 90) {
+      e.preventDefault();
       this.undo();
       return;
     }
@@ -52,7 +54,7 @@ export default class UndoRedo {
   drawDrawingMatrixState(drawingMatrixState) {    
     for (let i = 0; i < this.drawingBoard.boardRows; i++) {
       for (let j = 0; j < this.drawingBoard.boardColumns; j++) {
-        this.drawingBoard.paintPixel(i,j,drawingMatrixState[j][i]);
+        this.drawingBoard.paintPixel(j,i,drawingMatrixState[i][j]);
       }
     }
   }
@@ -60,5 +62,6 @@ export default class UndoRedo {
   resetActions() {
     this.actions.splice(0, this.actions.length);
     this.index = 0;
+    this.saveState();
   }
 }
